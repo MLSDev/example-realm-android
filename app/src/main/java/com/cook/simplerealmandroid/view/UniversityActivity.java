@@ -1,4 +1,4 @@
-package com.cook.simplerealmandroid;
+package com.cook.simplerealmandroid.view;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -9,7 +9,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
-public class MainActivity extends AppCompatActivity {
+import com.cook.simplerealmandroid.R;
+
+public class UniversityActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

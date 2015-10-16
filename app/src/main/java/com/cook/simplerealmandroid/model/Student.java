@@ -1,7 +1,5 @@
 package com.cook.simplerealmandroid.model;
 
-import java.util.List;
-
 import io.realm.RealmList;
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
@@ -13,8 +11,8 @@ public class Student extends RealmObject {
 
     @PrimaryKey
     private int id;
-    private String name;
     private int age;
+    private String name;
     private RealmList<Book> books;
     private RealmList<Lesson> lessons;
 

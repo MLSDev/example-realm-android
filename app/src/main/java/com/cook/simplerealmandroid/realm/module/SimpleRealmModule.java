@@ -1,4 +1,4 @@
-package com.cook.simplerealmandroid.realm;
+package com.cook.simplerealmandroid.realm.module;
 
 import com.cook.simplerealmandroid.model.Book;
 import com.cook.simplerealmandroid.model.Lesson;
