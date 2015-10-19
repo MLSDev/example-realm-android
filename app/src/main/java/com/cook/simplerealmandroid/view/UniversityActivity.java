@@ -1,49 +1,87 @@
 package com.cook.simplerealmandroid.view;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
+import android.widget.Toast;
 
 import com.cook.simplerealmandroid.R;
+import com.cook.simplerealmandroid.model.University;
+import com.cook.simplerealmandroid.presenters.IUniversityPresenter;
+import com.cook.simplerealmandroid.presenters.impl.UniversityPresenter;
+import com.cook.simplerealmandroid.view.base.BaseActivity;
 
-public class UniversityActivity extends AppCompatActivity {
+import io.realm.RealmResults;
+
+public class UniversityActivity extends BaseActivity implements View.OnClickListener {
+
+    private FloatingActionButton fbAdd;
+
+    private IUniversityPresenter presenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_universities);
+
+        presenter = new UniversityPresenter();
+
+        initComponents();
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        presenter.subscribeCallbacks();
+//        presenter.getAllUniversities();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        presenter.unSubscribeCallbacks();
+    }
+
+    @Override
+    protected void initComponents() {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        fbAdd = (FloatingActionButton) findViewById(R.id.fab_add_university);
+        fbAdd.setOnClickListener(this);
+    }
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG).setAction("Action", null).show();
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.fab_add_university: {
+                AlertDialog.Builder builder = new AlertDialog.Builder(this, R.style.AlertDialogStyle);
+                builder.setTitle(getResources().getString(R.string.action_add_university));
+                builder.setMessage(getResources().getString(R.string.input_name_of_university));
+                EditText editText = new EditText(this);
+                editText.setHint("adsda");
+                builder.setView(editText);
+                builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                });
+                builder.setNegativeButton("Cancel", null);
+                builder.show();
+                break;
             }
-        });
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-
-        int id = item.getItemId();
-
-        if (id == R.id.action_settings) {
-            return true;
         }
+    }
 
-        return super.onOptionsItemSelected(item);
+    public void showUniversities(RealmResults<University> universities) {
+
+    }
+
+    public void showMessage(String message) {
+        Toast.makeText(this, message, Toast.LENGTH_LONG).show();
     }
 }

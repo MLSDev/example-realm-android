@@ -3,6 +3,7 @@ package com.cook.simplerealmandroid.model;
 
 import io.realm.RealmList;
 import io.realm.RealmObject;
+import io.realm.annotations.Index;
 import io.realm.annotations.PrimaryKey;
 
 /**
@@ -10,7 +11,7 @@ import io.realm.annotations.PrimaryKey;
  */
 public class University extends RealmObject {
 
-    @PrimaryKey
+    @Index
     private int id;
     private String name;
     private RealmList<Student> students;

@@ -27,7 +27,7 @@ public class UniversityRepository implements IUniversityRepository {
     }
 
     @Override
-    public void getSpecialUniversityCallback(OnGetSpecialUniversityCallback callback) {
+    public void getSpecialUniversityCallback(University university, OnGetSpecialUniversityCallback callback) {
 
     }
 }

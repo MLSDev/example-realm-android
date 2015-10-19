@@ -31,5 +31,5 @@ public interface IUniversityRepository extends IBaseRepository {
 
     void getAllUniversities(OnGetAllUniversityCallback callback);
 
-    void getSpecialUniversityCallback(OnGetSpecialUniversityCallback callback);
+    void getSpecialUniversityCallback(University university, OnGetSpecialUniversityCallback callback);
 }

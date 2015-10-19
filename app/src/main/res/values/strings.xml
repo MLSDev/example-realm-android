@@ -1,4 +1,11 @@
 <resources>
     <string name="app_name">SimpleRealmAndroid</string>
     <string name="action_settings">Settings</string>
+    <string name="action_add_university">Add University</string>
+    <string name="action_add_student">Add Student</string>
+    <string name="action_add_book">Add Book</string>
+
+    <!-- university-->
+    <string name="add_a_university">Add a university</string>
+    <string name="input_name_of_university">Universitie\'s name</string>
 </resources>

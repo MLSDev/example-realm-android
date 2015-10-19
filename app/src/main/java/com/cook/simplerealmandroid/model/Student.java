@@ -13,6 +13,7 @@ public class Student extends RealmObject {
     private int id;
     private int age;
     private String name;
+    private String email;
     private RealmList<Book> books;
     private RealmList<Lesson> lessons;
 
@@ -38,6 +39,14 @@ public class Student extends RealmObject {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public RealmList<Book> getBooks() {

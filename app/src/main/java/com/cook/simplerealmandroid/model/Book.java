@@ -11,6 +11,7 @@ public class Book extends RealmObject {
     @PrimaryKey
     private int id;
     private String name;
+    private int pages;
 
     public int getId() {
         return id;
@@ -26,5 +27,13 @@ public class Book extends RealmObject {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public int getPages() {
+        return pages;
+    }
+
+    public void setPages(int pages) {
+        this.pages = pages;
     }
 }
