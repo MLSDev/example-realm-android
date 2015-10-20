@@ -8,4 +8,13 @@
     <!-- university-->
     <string name="add_a_university">Add a university</string>
     <string name="input_name_of_university">Universitie\'s name</string>
+    <string name="name">name</string>
+    <string name="pre_fill"></string>
+
+    <!-- dialog-->
+    <string name="ok">Ok</string>
+    <string name="cancel">Cancel</string>
+
+    <!-- tittles-->
+    <string name="universities">Universities</string>
 </resources>

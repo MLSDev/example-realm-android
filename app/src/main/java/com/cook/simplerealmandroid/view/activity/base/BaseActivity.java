@@ -1,4 +1,4 @@
-package com.cook.simplerealmandroid.view.base;
+package com.cook.simplerealmandroid.view.activity.base;
 
 import android.support.v7.app.AppCompatActivity;
 

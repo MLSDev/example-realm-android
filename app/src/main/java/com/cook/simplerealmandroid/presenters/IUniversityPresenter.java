@@ -9,7 +9,7 @@ public interface IUniversityPresenter {
 
     void getAllUniversities();
 
-    void addUniversity(University university);
+    void addUniversity(String universityName);
 
     void getSpecialUniversity(University university);
 

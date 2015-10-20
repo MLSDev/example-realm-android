@@ -11,6 +11,13 @@ import io.realm.annotations.PrimaryKey;
  */
 public class University extends RealmObject {
 
+    public University() {
+    }
+
+    public University(String name) {
+        this.name = name;
+    }
+
     @Index
     private int id;
     private String name;
