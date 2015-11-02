@@ -13,6 +13,8 @@ public interface IUniversityPresenter {
 
     void getSpecialUniversity(University university);
 
+    void deleteUniversity(int position);
+
     void subscribeCallbacks();
 
     void unSubscribeCallbacks();

@@ -3,13 +3,17 @@ package com.cook.simplerealmandroid.model;
 
 import io.realm.RealmList;
 import io.realm.RealmObject;
-import io.realm.annotations.Index;
 import io.realm.annotations.PrimaryKey;
 
 /**
  * Created by roma on 14.10.15.
  */
 public class University extends RealmObject {
+
+    @PrimaryKey
+    private String id;
+    private String name;
+    private RealmList<Student> students;
 
     public University() {
     }
@@ -18,16 +22,11 @@ public class University extends RealmObject {
         this.name = name;
     }
 
-    @Index
-    private int id;
-    private String name;
-    private RealmList<Student> students;
-
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -46,4 +45,5 @@ public class University extends RealmObject {
     public void setStudents(RealmList<Student> students) {
         this.students = students;
     }
+
 }

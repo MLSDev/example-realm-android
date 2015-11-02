@@ -6,6 +6,7 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.support.v7.widget.helper.ItemTouchHelper;
 import android.text.InputType;
 import android.view.View;
 import android.widget.Toast;
@@ -58,10 +59,7 @@ public class UniversityActivity extends BaseActivity implements View.OnClickList
         setSupportActionBar(toolbar);
         fbAdd = (FloatingActionButton) findViewById(R.id.fab_add_university);
         fbAdd.setOnClickListener(this);
-        rvUniversities = (RecyclerView) findViewById(R.id.rv_universities);
-        rvUniversities.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
-        rvUniversities.setItemAnimator(new DefaultItemAnimator());
-
+        initRecyclerListener();
     }
 
     @Override
@@ -74,8 +72,28 @@ public class UniversityActivity extends BaseActivity implements View.OnClickList
         }
     }
 
-    private void showAddUniversityDialog() {
+    private void initRecyclerListener(){
+        rvUniversities = (RecyclerView) findViewById(R.id.rv_universities);
+        rvUniversities.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+        rvUniversities.setItemAnimator(new DefaultItemAnimator());
 
+        ItemTouchHelper swipeToDismissTouchHelper = new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(
+                ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
+            @Override
+            public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target) {
+                return false;
+            }
+
+            @Override
+            public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
+                presenter.deleteUniversity(direction);
+                adapter.notifyItemRemoved(viewHolder.getAdapterPosition());
+            }
+        });
+        swipeToDismissTouchHelper.attachToRecyclerView(rvUniversities);
+    }
+
+    private void showAddUniversityDialog() {
         new MaterialDialog.Builder(this)
                 .title(R.string.add_a_university)
                 .content(R.string.input_name_of_university)

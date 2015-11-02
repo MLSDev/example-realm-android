@@ -4,6 +4,8 @@ import com.cook.simplerealmandroid.app.SimpleRealmApp;
 import com.cook.simplerealmandroid.model.University;
 import com.cook.simplerealmandroid.realm.repository.IUniversityRepository;
 
+import java.util.UUID;
+
 import io.realm.Realm;
 import io.realm.RealmQuery;
 import io.realm.RealmResults;
@@ -23,15 +25,21 @@ public class UniversityRepository implements IUniversityRepository {
 
     @Override
     public void onSaveUniversity(University university, OnSaveUniversityCallback callback) {
-        Realm realm = Realm.getInstance(SimpleRealmApp.getInstance());
+        Realm realm  = Realm.getInstance(SimpleRealmApp.getInstance());
         realm.beginTransaction();
         University u = realm.createObject(University.class);
+        u.setId(UUID.randomUUID().toString());
         u.setName(university.getName());
         realm.commitTransaction();
     }
 
     @Override
-    public void getSpecialUniversityCallback(University university, OnGetSpecialUniversityCallback callback) {
+    public void getSpecialUniversity(University university, OnGetSpecialUniversityCallback callback) {
 
+    }
+
+    @Override
+    public void deleteUniversity(int position, OnDeleteUniversityCallback callback) {
+        Realm realm = Realm.getInstance(SimpleRealmApp.getInstance());
     }
 }

@@ -26,9 +26,18 @@ public interface IUniversityRepository extends IBaseRepository {
 
         void onError();
     }
+
+    interface OnDeleteUniversityCallback {
+        void onSuccess();
+
+        void onError(String message);
+    }
+
     void getAllUniversities(OnGetAllUniversityCallback callback);
 
     void onSaveUniversity(University university, OnSaveUniversityCallback callback);
 
-    void getSpecialUniversityCallback(University university, OnGetSpecialUniversityCallback callback);
+    void getSpecialUniversity(University university, OnGetSpecialUniversityCallback callback);
+
+    void deleteUniversity(int position, OnDeleteUniversityCallback callback);
 }

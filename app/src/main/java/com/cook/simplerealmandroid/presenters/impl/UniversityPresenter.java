@@ -20,6 +20,7 @@ public class UniversityPresenter implements IUniversityPresenter {
     private IUniversityRepository.OnGetAllUniversityCallback getAllUniversityCallback;
     private IUniversityRepository.OnSaveUniversityCallback saveUniversityCallback;
     private IUniversityRepository.OnGetSpecialUniversityCallback getSpecialUniversityCallback;
+    private IUniversityRepository.OnDeleteUniversityCallback deleteUniversityCallback;
 
     public UniversityPresenter(UniversityActivity view) {
         this.view = view;
@@ -38,7 +39,12 @@ public class UniversityPresenter implements IUniversityPresenter {
 
     @Override
     public void getSpecialUniversity(University university) {
-        repository.getSpecialUniversityCallback(university, getSpecialUniversityCallback);
+        repository.getSpecialUniversity(university, getSpecialUniversityCallback);
+    }
+
+    @Override
+    public void deleteUniversity(int position) {
+        repository.deleteUniversity(position, deleteUniversityCallback);
     }
 
     @Override
@@ -76,6 +82,18 @@ public class UniversityPresenter implements IUniversityPresenter {
                 view.showMessage("Error");
             }
         };
+        deleteUniversityCallback = new IUniversityRepository.OnDeleteUniversityCallback() {
+            @Override
+            public void onSuccess() {
+
+            }
+
+            @Override
+            public void onError(String message) {
+                view.showMessage(message);
+            }
+        };
+
     }
 
     @Override
@@ -83,5 +101,6 @@ public class UniversityPresenter implements IUniversityPresenter {
         getAllUniversityCallback = null;
         saveUniversityCallback = null;
         getSpecialUniversityCallback = null;
+        deleteUniversityCallback = null;
     }
 }
