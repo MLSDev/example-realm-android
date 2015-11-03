@@ -87,7 +87,7 @@ public class UniversityActivity extends BaseActivity implements View.OnClickList
             @Override
             public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
                 presenter.deleteUniversity(viewHolder.getAdapterPosition());
-                adapter.deleteUniversity(viewHolder.getAdapterPosition());
+                adapter.notifyItemRemoved(viewHolder.getAdapterPosition());
             }
         });
         swipeToDismissTouchHelper.attachToRecyclerView(rvUniversities);
@@ -109,6 +109,10 @@ public class UniversityActivity extends BaseActivity implements View.OnClickList
     public void showUniversities(RealmResults<University> universities) {
         adapter = new UniversityAdapter(universities);
         rvUniversities.setAdapter(adapter);
+    }
+
+    public void showStudentsActivity(){
+
     }
 
     public void showMessage(String message) {

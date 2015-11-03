@@ -8,6 +8,7 @@ import com.cook.simplerealmandroid.realm.table.RealmTable;
 import java.util.UUID;
 
 import io.realm.Realm;
+import io.realm.RealmQuery;
 import io.realm.RealmResults;
 
 /**
@@ -46,7 +47,15 @@ public class StudentRepository implements IStudentRepository {
 
     @Override
     public void deleteStudentByPosition(int position, OnDeleteStudentCallback callback) {
+        Realm realm = Realm.getInstance(SimpleRealmApp.getInstance());
+        realm.beginTransaction();
+        RealmQuery<Student> query = realm.where(Student.class);
+        RealmResults<Student> results = query.findAll();
+        results.remove(position);
+        realm.commitTransaction();
 
+        if (callback != null)
+            callback.onSuccess();
     }
 
     @Override

@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import com.cook.simplerealmandroid.R;
 import com.cook.simplerealmandroid.model.University;
+import com.cook.simplerealmandroid.presenters.impl.UniversityPresenter;
 import com.cook.simplerealmandroid.view.activity.UniversityActivity;
 
 import io.realm.RealmList;
@@ -19,7 +20,9 @@ import io.realm.RealmResults;
 public class UniversityAdapter extends RecyclerView.Adapter<UniversityAdapter.UniversityViewHolder> {
 
     private UniversityActivity view;
+
     private RealmResults<University> universities;
+    private UniversityPresenter presenter;
 
     public UniversityAdapter(RealmResults<University> universities) {
         this.universities = universities;
@@ -41,24 +44,20 @@ public class UniversityAdapter extends RecyclerView.Adapter<UniversityAdapter.Un
         return universities.size();
     }
 
-    public void deleteUniversity(int position){
-        notifyItemRemoved(position);
-//        universities.remove(position);
-    }
-
     static class UniversityViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
         TextView tvUniversityName;
 
         public UniversityViewHolder(View itemView) {
             super(itemView);
+            itemView.setOnClickListener(this);
 
             tvUniversityName = (TextView) itemView.findViewById(R.id.tv_name_university);
         }
 
         @Override
         public void onClick(View v) {
-//            v
+
         }
     }
 
