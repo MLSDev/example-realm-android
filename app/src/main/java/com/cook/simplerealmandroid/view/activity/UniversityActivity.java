@@ -86,8 +86,8 @@ public class UniversityActivity extends BaseActivity implements View.OnClickList
 
             @Override
             public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
-                presenter.deleteUniversity(direction);
-                adapter.notifyItemRemoved(viewHolder.getAdapterPosition());
+                presenter.deleteUniversity(viewHolder.getAdapterPosition());
+                adapter.deleteUniversity(viewHolder.getAdapterPosition());
             }
         });
         swipeToDismissTouchHelper.attachToRecyclerView(rvUniversities);

@@ -41,6 +41,11 @@ public class UniversityAdapter extends RecyclerView.Adapter<UniversityAdapter.Un
         return universities.size();
     }
 
+    public void deleteUniversity(int position){
+        notifyItemRemoved(position);
+//        universities.remove(position);
+    }
+
     static class UniversityViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
         TextView tvUniversityName;
