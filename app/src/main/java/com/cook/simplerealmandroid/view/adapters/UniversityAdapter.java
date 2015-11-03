@@ -19,10 +19,8 @@ import io.realm.RealmResults;
  */
 public class UniversityAdapter extends RecyclerView.Adapter<UniversityAdapter.UniversityViewHolder> {
 
-    private UniversityActivity view;
-
+    private OnItemClickListener onItemClickListener;
     private RealmResults<University> universities;
-    private UniversityPresenter presenter;
 
     public UniversityAdapter(RealmResults<University> universities) {
         this.universities = universities;
@@ -44,7 +42,7 @@ public class UniversityAdapter extends RecyclerView.Adapter<UniversityAdapter.Un
         return universities.size();
     }
 
-    static class UniversityViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+    public class UniversityViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
         TextView tvUniversityName;
 
@@ -57,9 +55,16 @@ public class UniversityAdapter extends RecyclerView.Adapter<UniversityAdapter.Un
 
         @Override
         public void onClick(View v) {
-
+            University university = universities.get(getAdapterPosition());
+            onItemClickListener.onItemClick(university.getId());
         }
     }
 
+    public interface OnItemClickListener{
+        void onItemClick(String id);
+    }
 
+    public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
+        this.onItemClickListener = onItemClickListener;
+    }
 }

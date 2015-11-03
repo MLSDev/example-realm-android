@@ -5,6 +5,8 @@ package com.cook.simplerealmandroid.presenters;
  */
 public interface IUniversityPresenter extends IBasePresenter {
 
+
+
     void getAllUniversities();
 
     void addUniversity(String universityName);

@@ -1,5 +1,6 @@
 package com.cook.simplerealmandroid.view.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -9,13 +10,13 @@ import android.support.v7.widget.Toolbar;
 import android.support.v7.widget.helper.ItemTouchHelper;
 import android.text.InputType;
 import android.view.View;
-import android.widget.Toast;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.cook.simplerealmandroid.R;
 import com.cook.simplerealmandroid.model.University;
 import com.cook.simplerealmandroid.presenters.IUniversityPresenter;
 import com.cook.simplerealmandroid.presenters.impl.UniversityPresenter;
+import com.cook.simplerealmandroid.realm.table.RealmTable;
 import com.cook.simplerealmandroid.view.activity.base.BaseActivity;
 import com.cook.simplerealmandroid.view.adapters.UniversityAdapter;
 
@@ -72,7 +73,7 @@ public class UniversityActivity extends BaseActivity implements View.OnClickList
         }
     }
 
-    private void initRecyclerListener(){
+    private void initRecyclerListener() {
         rvUniversities = (RecyclerView) findViewById(R.id.rv_universities);
         rvUniversities.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         rvUniversities.setItemAnimator(new DefaultItemAnimator());
@@ -93,6 +94,19 @@ public class UniversityActivity extends BaseActivity implements View.OnClickList
         swipeToDismissTouchHelper.attachToRecyclerView(rvUniversities);
     }
 
+    public void showUniversities(RealmResults<University> universities) {
+        adapter = new UniversityAdapter(universities);
+        adapter.setOnItemClickListener(new UniversityAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(String id) {
+                Intent intent = new Intent(getApplicationContext(), StudentsActivity.class);
+                intent.putExtra(RealmTable.ID, id);
+                startActivity(intent);
+            }
+        });
+        rvUniversities.setAdapter(adapter);
+    }
+
     private void showAddUniversityDialog() {
         new MaterialDialog.Builder(this)
                 .title(R.string.add_a_university)
@@ -106,16 +120,4 @@ public class UniversityActivity extends BaseActivity implements View.OnClickList
                 }).show();
     }
 
-    public void showUniversities(RealmResults<University> universities) {
-        adapter = new UniversityAdapter(universities);
-        rvUniversities.setAdapter(adapter);
-    }
-
-    public void showStudentsActivity(){
-
-    }
-
-    public void showMessage(String message) {
-        Toast.makeText(this, message, Toast.LENGTH_LONG).show();
-    }
 }
