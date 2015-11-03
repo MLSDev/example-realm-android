@@ -34,17 +34,17 @@ public class UniversityPresenter implements IUniversityPresenter {
     @Override
     public void addUniversity(String universityName) {
         University university = new University(universityName);
-        repository.onSaveUniversity(university, saveUniversityCallback);
+        repository.saveUniversity(university, saveUniversityCallback);
     }
 
     @Override
     public void getSpecialUniversity(University university) {
-        repository.getSpecialUniversity(university, getSpecialUniversityCallback);
+        repository.getUniversityById(university, getSpecialUniversityCallback);
     }
 
     @Override
     public void deleteUniversity(int position) {
-        repository.deleteUniversity(position, deleteUniversityCallback);
+        repository.deleteUniversityByPosition(position, deleteUniversityCallback);
     }
 
     @Override
