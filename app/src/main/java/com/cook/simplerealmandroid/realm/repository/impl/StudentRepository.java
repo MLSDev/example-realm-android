@@ -45,6 +45,11 @@ public class StudentRepository implements IStudentRepository {
     }
 
     @Override
+    public void deleteStudentByPosition(int position, OnDeleteStudentCallback callback) {
+
+    }
+
+    @Override
     public void getAllStudents(OnGetAllStudentsCallback callback) {
         Realm realm = Realm.getInstance(SimpleRealmApp.getInstance());
         realm.beginTransaction();

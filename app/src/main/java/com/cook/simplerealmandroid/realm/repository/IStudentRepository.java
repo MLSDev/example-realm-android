@@ -33,6 +33,8 @@ public interface IStudentRepository {
 
     void deleteStudentById(String id, OnDeleteStudentCallback callback);
 
+    void deleteStudentByPosition(int position, OnDeleteStudentCallback callback);
+
     void getAllStudents(OnGetAllStudentsCallback callback);
 
     void getStudentById(String id, OnGetStudentByIdCallback callback);

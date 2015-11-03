@@ -15,7 +15,7 @@ public class UniversityPresenter implements IUniversityPresenter {
 
     private UniversityActivity view;
 
-    private IUniversityRepository repository = new UniversityRepository();
+    private IUniversityRepository repository;
 
     private IUniversityRepository.OnGetAllUniversityCallback getAllUniversityCallback;
     private IUniversityRepository.OnSaveUniversityCallback saveUniversityCallback;
@@ -24,6 +24,7 @@ public class UniversityPresenter implements IUniversityPresenter {
 
     public UniversityPresenter(UniversityActivity view) {
         this.view = view;
+        repository = new UniversityRepository();
     }
 
     @Override
@@ -38,8 +39,8 @@ public class UniversityPresenter implements IUniversityPresenter {
     }
 
     @Override
-    public void getSpecialUniversity(University university) {
-        repository.getUniversityById(university, getSpecialUniversityCallback);
+    public void getSpecialUniversityById(String id) {
+        repository.getUniversityById(id, getSpecialUniversityCallback);
     }
 
     @Override
