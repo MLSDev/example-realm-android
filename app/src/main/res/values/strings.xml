@@ -11,6 +11,10 @@
     <string name="name">name</string>
     <string name="pre_fill"></string>
 
+    <!-- students-->
+    <string name="birthday">Birthday :</string>
+    <string name="email">Email :</string>
+
     <!-- dialog-->
     <string name="ok">Ok</string>
     <string name="cancel">Cancel</string>

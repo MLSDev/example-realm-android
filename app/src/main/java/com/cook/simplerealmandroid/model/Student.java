@@ -1,8 +1,10 @@
 package com.cook.simplerealmandroid.model;
 
-import io.realm.RealmList;
+import java.util.Date;
+
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
+import io.realm.annotations.Required;
 
 /**
  * Created by roma on 14.10.15.
@@ -11,11 +13,12 @@ public class Student extends RealmObject {
 
     @PrimaryKey
     private String id;
-    private int age;
+    @Required
     private String name;
+    @Required
+    private Date birthday;
+    @Required
     private String email;
-    private RealmList<Book> books;
-    private RealmList<Lesson> lessons;
 
     public String getName() {
         return name;
@@ -25,12 +28,12 @@ public class Student extends RealmObject {
         this.name = name;
     }
 
-    public int getAge() {
-        return age;
+    public Date getBirthday() {
+        return birthday;
     }
 
-    public void setAge(int age) {
-        this.age = age;
+    public void setBirthday(Date birthday) {
+        this.birthday = birthday;
     }
 
     public String getId() {
@@ -49,19 +52,4 @@ public class Student extends RealmObject {
         this.email = email;
     }
 
-    public RealmList<Book> getBooks() {
-        return books;
-    }
-
-    public void setBooks(RealmList<Book> books) {
-        this.books = books;
-    }
-
-    public RealmList<Lesson> getLessons() {
-        return lessons;
-    }
-
-    public void setLessons(RealmList<Lesson> lessons) {
-        this.lessons = lessons;
-    }
 }

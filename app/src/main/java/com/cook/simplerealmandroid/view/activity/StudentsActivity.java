@@ -49,15 +49,26 @@ public class StudentsActivity extends BaseActivity implements View.OnClickListen
     @Override
     protected void onStart() {
         super.onStart();
+        presenter.subscribeCallbacks();
     }
 
     @Override
     protected void onStop() {
         super.onStop();
+        presenter.unSubscribeCallbacks();
     }
 
     @Override
     public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.fab_add_student:{
+                showAddStudentDialog();
+                break;
+            }
+        }
+    }
+
+    private void showAddStudentDialog(){
 
     }
 

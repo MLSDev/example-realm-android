@@ -23,7 +23,7 @@ public class StudentRepository implements IStudentRepository {
         Student realmStudent = realm.createObject(Student.class);
         realmStudent.setId(UUID.randomUUID().toString());
         realmStudent.setName(student.getName());
-        realmStudent.setAge(student.getAge());
+        realmStudent.setBirthday(student.getBirthday());
         realmStudent.setEmail(student.getEmail());
         realmStudent.setBooks(student.getBooks());
         realmStudent.setLessons(student.getLessons());
