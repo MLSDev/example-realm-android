@@ -2,6 +2,7 @@ package com.cook.simplerealmandroid.view.activity;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -18,6 +19,7 @@ import com.cook.simplerealmandroid.presenters.impl.StudentPresnter;
 import com.cook.simplerealmandroid.realm.table.RealmTable;
 import com.cook.simplerealmandroid.view.activity.base.BaseActivity;
 import com.cook.simplerealmandroid.view.adapters.StudentsAdapter;
+import com.cook.simplerealmandroid.view.dialogs.StudentInfoDialog;
 
 import io.realm.RealmList;
 import io.realm.RealmResults;
@@ -48,10 +50,10 @@ public class StudentsActivity extends BaseActivity implements View.OnClickListen
 
     @Override
     protected void initComponents() {
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitle(R.string.students);
-        setSupportActionBar(toolbar);
-        fbAdd = (FloatingActionButton) findViewById(R.id.fab_add_university);
+//        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        getSupportActionBar().setTitle(R.string.students);
+//        setSupportActionBar(toolbar);
+        fbAdd = (FloatingActionButton) findViewById(R.id.fab_add_student);
         fbAdd.setOnClickListener(this);
         initRecyclerListener();
     }
@@ -80,19 +82,21 @@ public class StudentsActivity extends BaseActivity implements View.OnClickListen
     }
 
     private void initRecyclerListener(){
-        rvStudents = (RecyclerView) findViewById(R.id.rv_universities);
+        rvStudents = (RecyclerView) findViewById(R.id.rv_students);
         rvStudents.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         rvStudents.setItemAnimator(new DefaultItemAnimator());
 
         ItemTouchHelper swipeToDismissTouchHelper = new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(
                 ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
             @Override
+
             public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target) {
                 return false;
             }
 
             @Override
             public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
+
                 presenter.deleteStudent(viewHolder.getAdapterPosition());
                 adapter.notifyItemRemoved(viewHolder.getAdapterPosition());
             }
@@ -101,7 +105,8 @@ public class StudentsActivity extends BaseActivity implements View.OnClickListen
     }
 
     private void showAddStudentDialog(){
-
+        StudentInfoDialog dialog = new StudentInfoDialog();
+        dialog.show(getSupportFragmentManager(), dialog.getClass().getName());
     }
 
     public void showStudents(RealmList<Student> students){
