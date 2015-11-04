@@ -11,16 +11,16 @@ import com.cook.simplerealmandroid.app.SimpleRealmApp;
 import com.cook.simplerealmandroid.model.Student;
 import com.cook.simplerealmandroid.tools.DateFormatter;
 
-import io.realm.RealmResults;
+import io.realm.RealmList;
 
 /**
  * Created by roma on 03.11.15.
  */
-public class StudentsAdapter extends RecyclerView.Adapter<StudentsAdapter.StudentViewHolder>{
+public class StudentsAdapter extends RecyclerView.Adapter<StudentsAdapter.StudentViewHolder> {
 
-    private RealmResults<Student> students;
+    private RealmList<Student> students;
 
-    public StudentsAdapter(RealmResults<Student> students) {
+    public StudentsAdapter(RealmList<Student> students) {
         this.students = students;
     }
 
@@ -44,7 +44,7 @@ public class StudentsAdapter extends RecyclerView.Adapter<StudentsAdapter.Studen
         return students.size();
     }
 
-    public class StudentViewHolder extends RecyclerView.ViewHolder{
+    public class StudentViewHolder extends RecyclerView.ViewHolder {
 
         private TextView tvName;
         private TextView tvBirthday;

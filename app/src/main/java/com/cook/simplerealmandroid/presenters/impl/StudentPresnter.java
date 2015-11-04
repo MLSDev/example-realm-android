@@ -6,6 +6,7 @@ import com.cook.simplerealmandroid.realm.repository.IStudentRepository;
 import com.cook.simplerealmandroid.realm.repository.impl.StudentRepository;
 import com.cook.simplerealmandroid.view.activity.StudentsActivity;
 
+import io.realm.RealmList;
 import io.realm.RealmResults;
 
 /**
@@ -19,6 +20,8 @@ public class StudentPresnter implements IStudentPresenter {
     private IStudentRepository.OnSaveStudentCallback onSaveStudentCallback;
     private IStudentRepository.OnGetAllStudentsCallback onGetAllStudentsCallback;
     private IStudentRepository.OnGetStudentByIdCallback onGetStudentByIdCallback;
+    private IStudentRepository.OnGetStudentsCallback onGetStudentsCallback;
+
 
     private IStudentRepository studentRepository;
 
@@ -33,6 +36,11 @@ public class StudentPresnter implements IStudentPresenter {
     }
 
     @Override
+    public void addStudentByUniversityId(Student student, String universityId) {
+        studentRepository.addStudentByUniversityId(student, universityId, onSaveStudentCallback);
+    }
+
+    @Override
     public void deleteStudent(int position) {
         studentRepository.deleteStudentByPosition(position, onDeleteStudentCallback);
     }
@@ -40,6 +48,11 @@ public class StudentPresnter implements IStudentPresenter {
     @Override
     public void getAllStudents() {
         studentRepository.getAllStudents(onGetAllStudentsCallback);
+    }
+
+    @Override
+    public void getAllStudentsByUniversityId(String id) {
+        studentRepository.getAllStudentsByUniversityId(id, onGetStudentsCallback);
     }
 
     @Override
@@ -91,6 +104,17 @@ public class StudentPresnter implements IStudentPresenter {
             @Override
             public void onError(String message) {
 
+            }
+        };
+        onGetStudentsCallback = new IStudentRepository.OnGetStudentsCallback() {
+            @Override
+            public void onSuccess(RealmList<Student> students) {
+                view.showStudents(students);
+            }
+
+            @Override
+            public void onError(String message) {
+                view.showMessage(message);
             }
         };
 

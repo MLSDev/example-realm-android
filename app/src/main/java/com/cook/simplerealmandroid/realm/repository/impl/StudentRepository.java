@@ -2,12 +2,14 @@ package com.cook.simplerealmandroid.realm.repository.impl;
 
 import com.cook.simplerealmandroid.app.SimpleRealmApp;
 import com.cook.simplerealmandroid.model.Student;
+import com.cook.simplerealmandroid.model.University;
 import com.cook.simplerealmandroid.realm.repository.IStudentRepository;
 import com.cook.simplerealmandroid.realm.table.RealmTable;
 
 import java.util.UUID;
 
 import io.realm.Realm;
+import io.realm.RealmList;
 import io.realm.RealmQuery;
 import io.realm.RealmResults;
 
@@ -25,12 +27,31 @@ public class StudentRepository implements IStudentRepository {
         realmStudent.setName(student.getName());
         realmStudent.setBirthday(student.getBirthday());
         realmStudent.setEmail(student.getEmail());
-        realmStudent.setBooks(student.getBooks());
-        realmStudent.setLessons(student.getLessons());
         realm.commitTransaction();
 
         if (callback != null)
             callback.onSuccess();
+    }
+
+    @Override
+    public void addStudentByUniversityId(Student student, String universityId, OnSaveStudentCallback callback) {
+        Realm realm = Realm.getInstance(SimpleRealmApp.getInstance());
+        realm.beginTransaction();
+
+        Student realmStudent = realm.createObject(Student.class);
+        realmStudent.setId(UUID.randomUUID().toString());
+        realmStudent.setName(student.getName());
+        realmStudent.setEmail(student.getEmail());
+        realmStudent.setBirthday(student.getBirthday());
+
+        University university = realm.where(University.class).equalTo(RealmTable.ID, universityId).findFirst();
+        university.getStudents().add(realmStudent);
+
+        realm.commitTransaction();
+
+        if (callback != null)
+            callback.onSuccess();
+
     }
 
     @Override
@@ -67,6 +88,19 @@ public class StudentRepository implements IStudentRepository {
 
         if (callback != null)
             callback.onSuccess(results);
+    }
+
+    @Override
+    public void getAllStudentsByUniversityId(String id, OnGetStudentsCallback callback) {
+        Realm realm = Realm.getInstance(SimpleRealmApp.getInstance());
+        realm.beginTransaction();
+        University university = realm.where(University.class).equalTo(RealmTable.ID, id).findFirst();
+        realm.commitTransaction();
+        RealmList<Student> students = university.getStudents();
+
+        if (callback != null)
+            callback.onSuccess(students);
+
     }
 
     @Override

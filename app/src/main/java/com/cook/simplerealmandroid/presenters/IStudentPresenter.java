@@ -9,9 +9,13 @@ public interface IStudentPresenter extends IBasePresenter{
 
     void addStudent(Student student);
 
+    void addStudentByUniversityId(Student student, String universityId);
+
     void deleteStudent(int position);
 
     void getAllStudents();
+
+    void getAllStudentsByUniversityId(String id);
 
     void getSpecialStudentById(String id);
 

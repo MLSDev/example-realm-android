@@ -15,11 +15,17 @@
     <string name="birthday">Birthday :</string>
     <string name="email">Email :</string>
 
+    <string name="hint_name">Name</string>
+    <string name="hint_email">Email</string>
+    <string name="add">Add</string>
+
     <!-- dialog-->
-    <string name="ok">Ok</string>
+    <string name="ok">Ok</string>ь
     <string name="cancel">Cancel</string>
 
     <!-- tittles-->
     <string name="universities">Universities</string>
     <string name="students">Students</string>
+
+    
 </resources>
