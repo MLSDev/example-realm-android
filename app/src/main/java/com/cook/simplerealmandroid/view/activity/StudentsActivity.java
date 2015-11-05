@@ -2,6 +2,7 @@ package com.cook.simplerealmandroid.view.activity;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.app.DialogFragment;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -64,15 +65,15 @@ public class StudentsActivity extends BaseActivity implements View.OnClickListen
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
-            case R.id.fab_add_student:{
+        switch (v.getId()) {
+            case R.id.fab_add_student: {
                 showAddStudentDialog();
                 break;
             }
         }
     }
 
-    private void initRecyclerListener(){
+    private void initRecyclerListener() {
         rvStudents = (RecyclerView) findViewById(R.id.rv_students);
         rvStudents.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         rvStudents.setItemAnimator(new DefaultItemAnimator());
@@ -94,14 +95,22 @@ public class StudentsActivity extends BaseActivity implements View.OnClickListen
         swipeToDismissTouchHelper.attachToRecyclerView(rvStudents);
     }
 
-    private void showAddStudentDialog(){
-        StudentInfoDialog dialog = new StudentInfoDialog();
+    private void showAddStudentDialog() {
+        final StudentInfoDialog dialog = new StudentInfoDialog();
         dialog.show(getSupportFragmentManager(), dialog.getClass().getName());
+        dialog.setListener(new StudentInfoDialog.OnAddStudentClickListener() {
+            @Override
+            public void onAddStudentClickListener(Student student) {
+                dialog.dismiss();
+                presenter.addStudentByUniversityId(student, universityId);
+            }
+        });
     }
 
-    public void showStudents(RealmList<Student> students){
+    public void showStudents(RealmList<Student> students) {
         this.students = students;
         adapter = new StudentsAdapter(students);
         rvStudents.setAdapter(adapter);
+
     }
 }
