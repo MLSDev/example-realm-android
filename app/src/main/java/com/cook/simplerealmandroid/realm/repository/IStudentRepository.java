@@ -35,7 +35,7 @@ public interface IStudentRepository {
         void onError(String message);
     }
 
-    void saveStudent(Student student, OnSaveStudentCallback callback);
+    void addStudent(Student student, OnSaveStudentCallback callback);
 
     void addStudentByUniversityId(Student student, String universityId, OnSaveStudentCallback callback);
 

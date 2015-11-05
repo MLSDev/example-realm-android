@@ -18,8 +18,8 @@ public class UniversityPresenter implements IUniversityPresenter {
     private IUniversityRepository repository;
 
     private IUniversityRepository.OnGetAllUniversityCallback getAllUniversityCallback;
-    private IUniversityRepository.OnSaveUniversityCallback saveUniversityCallback;
-    private IUniversityRepository.OnGetSpecialUniversityCallback getSpecialUniversityCallback;
+    private IUniversityRepository.OnAddUniversityCallback addUniversityCallback;
+    private IUniversityRepository.OnGetUniversityByIdCallback getSpecialUniversityCallback;
     private IUniversityRepository.OnDeleteUniversityCallback deleteUniversityCallback;
 
     public UniversityPresenter(UniversityActivity view) {
@@ -35,17 +35,22 @@ public class UniversityPresenter implements IUniversityPresenter {
     @Override
     public void addUniversity(String universityName) {
         University university = new University(universityName);
-        repository.saveUniversity(university, saveUniversityCallback);
+        repository.addUniversity(university, addUniversityCallback);
     }
 
     @Override
-    public void getSpecialUniversityById(String id) {
+    public void getUniversityById(String id) {
         repository.getUniversityById(id, getSpecialUniversityCallback);
     }
 
     @Override
     public void deleteUniversity(int position) {
         repository.deleteUniversityByPosition(position, deleteUniversityCallback);
+    }
+
+    @Override
+    public void deleteUniversityById(String Id) {
+        repository.deleteUniversityById(Id, deleteUniversityCallback);
     }
 
     @Override
@@ -61,10 +66,10 @@ public class UniversityPresenter implements IUniversityPresenter {
                 view.showMessage("Error");
             }
         };
-        saveUniversityCallback = new IUniversityRepository.OnSaveUniversityCallback() {
+        addUniversityCallback = new IUniversityRepository.OnAddUniversityCallback() {
             @Override
             public void onSuccess() {
-
+                view.showMessage("Added");
             }
 
             @Override
@@ -72,7 +77,7 @@ public class UniversityPresenter implements IUniversityPresenter {
                 view.showMessage("Error");
             }
         };
-        getSpecialUniversityCallback = new IUniversityRepository.OnGetSpecialUniversityCallback() {
+        getSpecialUniversityCallback = new IUniversityRepository.OnGetUniversityByIdCallback() {
             @Override
             public void onSuccess(University university) {
 
@@ -100,7 +105,7 @@ public class UniversityPresenter implements IUniversityPresenter {
     @Override
     public void unSubscribeCallbacks() {
         getAllUniversityCallback = null;
-        saveUniversityCallback = null;
+        addUniversityCallback = null;
         getSpecialUniversityCallback = null;
         deleteUniversityCallback = null;
     }

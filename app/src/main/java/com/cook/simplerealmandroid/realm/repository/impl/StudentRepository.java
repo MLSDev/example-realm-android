@@ -19,7 +19,7 @@ import io.realm.RealmResults;
 public class StudentRepository implements IStudentRepository {
 
     @Override
-    public void saveStudent(Student student, OnSaveStudentCallback callback) {
+    public void addStudent(Student student, OnSaveStudentCallback callback) {
         Realm realm = Realm.getInstance(SimpleRealmApp.getInstance());
         realm.beginTransaction();
         Student realmStudent = realm.createObject(Student.class);

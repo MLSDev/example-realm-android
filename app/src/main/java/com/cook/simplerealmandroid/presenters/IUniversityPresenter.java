@@ -5,14 +5,14 @@ package com.cook.simplerealmandroid.presenters;
  */
 public interface IUniversityPresenter extends IBasePresenter {
 
-
-
-    void getAllUniversities();
-
     void addUniversity(String universityName);
 
-    void getSpecialUniversityById(String id);
-
     void deleteUniversity(int position);
+
+    void deleteUniversityById(String Id);
+
+    void getUniversityById(String id);
+
+    void getAllUniversities();
 
 }

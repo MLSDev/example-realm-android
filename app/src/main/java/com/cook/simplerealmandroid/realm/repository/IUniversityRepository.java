@@ -9,7 +9,7 @@ import io.realm.RealmResults;
  */
 public interface IUniversityRepository extends IBaseRepository {
 
-    interface OnSaveUniversityCallback {
+    interface OnAddUniversityCallback {
         void onSuccess();
         void onError();
     }
@@ -19,7 +19,7 @@ public interface IUniversityRepository extends IBaseRepository {
         void onError();
     }
 
-    interface OnGetSpecialUniversityCallback {
+    interface OnGetUniversityByIdCallback {
         void onSuccess(University university);
         void onError();
     }
@@ -29,11 +29,13 @@ public interface IUniversityRepository extends IBaseRepository {
         void onError(String message);
     }
 
-    void getAllUniversities(OnGetAllUniversityCallback callback);
+    void addUniversity(University university, OnAddUniversityCallback callback);
 
-    void saveUniversity(University university, OnSaveUniversityCallback callback);
-
-    void getUniversityById(String id, OnGetSpecialUniversityCallback callback);
+    void deleteUniversityById(String Id, OnDeleteUniversityCallback callback);
 
     void deleteUniversityByPosition(int position, OnDeleteUniversityCallback callback);
+
+    void getAllUniversities(OnGetAllUniversityCallback callback);
+
+    void getUniversityById(String id, OnGetUniversityByIdCallback callback);
 }

@@ -30,6 +30,8 @@ public class UniversityActivity extends BaseActivity implements View.OnClickList
 
     private IUniversityPresenter presenter;
 
+    private RealmResults<University> universities;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -87,7 +89,7 @@ public class UniversityActivity extends BaseActivity implements View.OnClickList
 
             @Override
             public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
-                presenter.deleteUniversity(viewHolder.getAdapterPosition());
+                presenter.deleteUniversityById(universities.get(viewHolder.getAdapterPosition()).getId());
                 adapter.notifyItemRemoved(viewHolder.getAdapterPosition());
             }
         });
@@ -95,6 +97,7 @@ public class UniversityActivity extends BaseActivity implements View.OnClickList
     }
 
     public void showUniversities(RealmResults<University> universities) {
+        this.universities = universities;
         adapter = new UniversityAdapter(universities);
         adapter.setOnItemClickListener(new UniversityAdapter.OnItemClickListener() {
             @Override

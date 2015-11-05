@@ -12,7 +12,7 @@ import io.realm.RealmResults;
 /**
  * Created by roma on 03.11.15.
  */
-public class StudentPresnter implements IStudentPresenter {
+public class StudentPresenter implements IStudentPresenter {
 
     private StudentsActivity view;
 
@@ -25,14 +25,14 @@ public class StudentPresnter implements IStudentPresenter {
 
     private IStudentRepository studentRepository;
 
-    public StudentPresnter(StudentsActivity view) {
+    public StudentPresenter(StudentsActivity view) {
         this.view = view;
         studentRepository = new StudentRepository();
     }
 
     @Override
     public void addStudent(Student student) {
-        studentRepository.saveStudent(student, onSaveStudentCallback);
+        studentRepository.addStudent(student, onSaveStudentCallback);
     }
 
     @Override
@@ -41,8 +41,13 @@ public class StudentPresnter implements IStudentPresenter {
     }
 
     @Override
-    public void deleteStudent(int position) {
+    public void deleteStudentByPosition(int position) {
         studentRepository.deleteStudentByPosition(position, onDeleteStudentCallback);
+    }
+
+    @Override
+    public void deleteStudentById(String studentId) {
+        studentRepository.deleteStudentById(studentId, onDeleteStudentCallback);
     }
 
     @Override
@@ -56,7 +61,7 @@ public class StudentPresnter implements IStudentPresenter {
     }
 
     @Override
-    public void getSpecialStudentById(String id) {
+    public void getStudentById(String id) {
         studentRepository.getStudentById(id, onGetStudentByIdCallback);
     }
 
@@ -65,7 +70,7 @@ public class StudentPresnter implements IStudentPresenter {
         onSaveStudentCallback = new IStudentRepository.OnSaveStudentCallback() {
             @Override
             public void onSuccess() {
-
+                view.showMessage("Added");
             }
 
             @Override
@@ -76,7 +81,7 @@ public class StudentPresnter implements IStudentPresenter {
         onDeleteStudentCallback = new IStudentRepository.OnDeleteStudentCallback() {
             @Override
             public void onSuccess() {
-
+                view.showMessage("Deleted");
             }
 
             @Override

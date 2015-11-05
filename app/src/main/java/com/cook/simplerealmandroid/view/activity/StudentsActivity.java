@@ -2,57 +2,48 @@ package com.cook.simplerealmandroid.view.activity;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
 import android.support.v7.widget.helper.ItemTouchHelper;
-import android.text.InputType;
 import android.view.View;
 
-import com.afollestad.materialdialogs.MaterialDialog;
 import com.cook.simplerealmandroid.R;
 import com.cook.simplerealmandroid.model.Student;
 import com.cook.simplerealmandroid.presenters.IStudentPresenter;
-import com.cook.simplerealmandroid.presenters.impl.StudentPresnter;
+import com.cook.simplerealmandroid.presenters.impl.StudentPresenter;
 import com.cook.simplerealmandroid.realm.table.RealmTable;
 import com.cook.simplerealmandroid.view.activity.base.BaseActivity;
 import com.cook.simplerealmandroid.view.adapters.StudentsAdapter;
 import com.cook.simplerealmandroid.view.dialogs.StudentInfoDialog;
 
 import io.realm.RealmList;
-import io.realm.RealmResults;
 
 /**
  * Created by roma on 03.11.15.
  */
 public class StudentsActivity extends BaseActivity implements View.OnClickListener {
 
+    private IStudentPresenter presenter;
+
     private FloatingActionButton fbAdd;
     private RecyclerView rvStudents;
     private StudentsAdapter adapter;
 
-    private IStudentPresenter presenter;
+    private RealmList<Student> students;
+    private String universityId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_students);
-
-        presenter = new StudentPresnter(this);
-
-        String id = getIntent().getStringExtra(RealmTable.ID);
-        presenter.getAllStudentsByUniversityId(id);
-
+        presenter = new StudentPresenter(this);
+        universityId = getIntent().getStringExtra(RealmTable.ID);
         initComponents();
     }
 
     @Override
     protected void initComponents() {
-//        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        getSupportActionBar().setTitle(R.string.students);
-//        setSupportActionBar(toolbar);
         fbAdd = (FloatingActionButton) findViewById(R.id.fab_add_student);
         fbAdd.setOnClickListener(this);
         initRecyclerListener();
@@ -62,7 +53,7 @@ public class StudentsActivity extends BaseActivity implements View.OnClickListen
     protected void onStart() {
         super.onStart();
         presenter.subscribeCallbacks();
-        presenter.getAllStudents();
+        presenter.getAllStudentsByUniversityId(universityId);
     }
 
     @Override
@@ -96,8 +87,7 @@ public class StudentsActivity extends BaseActivity implements View.OnClickListen
 
             @Override
             public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
-
-                presenter.deleteStudent(viewHolder.getAdapterPosition());
+                presenter.deleteStudentById(students.get(viewHolder.getAdapterPosition()).getId());
                 adapter.notifyItemRemoved(viewHolder.getAdapterPosition());
             }
         });
@@ -110,6 +100,7 @@ public class StudentsActivity extends BaseActivity implements View.OnClickListen
     }
 
     public void showStudents(RealmList<Student> students){
+        this.students = students;
         adapter = new StudentsAdapter(students);
         rvStudents.setAdapter(adapter);
     }

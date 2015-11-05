@@ -11,12 +11,14 @@ public interface IStudentPresenter extends IBasePresenter{
 
     void addStudentByUniversityId(Student student, String universityId);
 
-    void deleteStudent(int position);
+    void deleteStudentByPosition(int position);
+
+    void deleteStudentById(String studentId);
 
     void getAllStudents();
 
     void getAllStudentsByUniversityId(String id);
 
-    void getSpecialStudentById(String id);
+    void getStudentById(String id);
 
 }
