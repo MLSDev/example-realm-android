@@ -2,7 +2,6 @@ package com.cook.simplerealmandroid.view.activity;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.v4.app.DialogFragment;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -16,7 +15,7 @@ import com.cook.simplerealmandroid.presenters.impl.StudentPresenter;
 import com.cook.simplerealmandroid.realm.table.RealmTable;
 import com.cook.simplerealmandroid.view.activity.base.BaseActivity;
 import com.cook.simplerealmandroid.view.adapters.StudentsAdapter;
-import com.cook.simplerealmandroid.view.dialogs.StudentInfoDialog;
+import com.cook.simplerealmandroid.view.dialogs.AddStudentDialog;
 
 import io.realm.RealmList;
 
@@ -97,9 +96,9 @@ public class StudentsActivity extends BaseActivity implements View.OnClickListen
     }
 
     private void showAddStudentDialog() {
-        final StudentInfoDialog dialog = new StudentInfoDialog();
+        final AddStudentDialog dialog = new AddStudentDialog();
         dialog.show(getSupportFragmentManager(), dialog.getClass().getName());
-        dialog.setListener(new StudentInfoDialog.OnAddStudentClickListener() {
+        dialog.setListener(new AddStudentDialog.OnAddStudentClickListener() {
             @Override
             public void onAddStudentClickListener(Student student) {
                 dialog.dismiss();

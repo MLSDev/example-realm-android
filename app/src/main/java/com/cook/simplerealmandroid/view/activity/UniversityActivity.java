@@ -8,10 +8,8 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.support.v7.widget.helper.ItemTouchHelper;
-import android.text.InputType;
 import android.view.View;
 
-import com.afollestad.materialdialogs.MaterialDialog;
 import com.cook.simplerealmandroid.R;
 import com.cook.simplerealmandroid.model.University;
 import com.cook.simplerealmandroid.presenters.IUniversityPresenter;
@@ -19,6 +17,7 @@ import com.cook.simplerealmandroid.presenters.impl.UniversityPresenter;
 import com.cook.simplerealmandroid.realm.table.RealmTable;
 import com.cook.simplerealmandroid.view.activity.base.BaseActivity;
 import com.cook.simplerealmandroid.view.adapters.UniversityAdapter;
+import com.cook.simplerealmandroid.view.dialogs.AddUniversityDialog;
 
 import io.realm.RealmResults;
 
@@ -111,15 +110,15 @@ public class UniversityActivity extends BaseActivity implements View.OnClickList
     }
 
     private void showAddUniversityDialog() {
-        new MaterialDialog.Builder(this)
-                .title(R.string.add_university)
-                .inputType(InputType.TYPE_CLASS_TEXT)
-                .input(R.string.hint_name, R.string.pre_fill, new MaterialDialog.InputCallback() {
-                    @Override
-                    public void onInput(MaterialDialog dialog, CharSequence input) {
-                        presenter.addUniversity(input.toString());
-                    }
-                }).show();
+        final AddUniversityDialog dialog = new AddUniversityDialog();
+        dialog.show(getSupportFragmentManager(), dialog.getClass().getName());
+        dialog.setListener(new AddUniversityDialog.OnAddUniversityClickListener() {
+            @Override
+            public void onAddUniversityClickListener(String universityName) {
+                dialog.dismiss();
+                presenter.addUniversity(universityName);
+            }
+        });
     }
 
 }

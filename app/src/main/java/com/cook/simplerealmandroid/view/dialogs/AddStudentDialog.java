@@ -19,7 +19,7 @@ import java.util.Date;
 /**
  * Created by roma on 04.11.15.
  */
-public class StudentInfoDialog extends DialogFragment implements View.OnClickListener {
+public class AddStudentDialog extends DialogFragment implements View.OnClickListener {
 
     private EditText etName, etEmail, etBirthday;
     private Date date;
