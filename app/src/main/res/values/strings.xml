@@ -6,17 +6,20 @@
     <string name="action_add_book">Add Book</string>
 
     <!-- university-->
-    <string name="add_a_university">Add a university</string>
+    <string name="add_university">Add University</string>
     <string name="input_name_of_university">Universitie\'s name</string>
     <string name="name">name</string>
     <string name="pre_fill"></string>
 
     <!-- students-->
+    <string name="add_student">Add Student</string>
     <string name="birthday">Birthday :</string>
     <string name="email">Email :</string>
 
+
     <string name="hint_name">Name</string>
     <string name="hint_email">Email</string>
+    <string name="hint_birthday">Birthday</string>
     <string name="add">Add</string>
 
     <!-- dialog-->

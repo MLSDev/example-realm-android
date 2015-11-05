@@ -47,6 +47,7 @@ public class StudentsActivity extends BaseActivity implements View.OnClickListen
     protected void initComponents() {
         fbAdd = (FloatingActionButton) findViewById(R.id.fab_add_student);
         fbAdd.setOnClickListener(this);
+        getSupportActionBar().setTitle(getString(R.string.students));
         initRecyclerListener();
     }
 
@@ -103,6 +104,7 @@ public class StudentsActivity extends BaseActivity implements View.OnClickListen
             public void onAddStudentClickListener(Student student) {
                 dialog.dismiss();
                 presenter.addStudentByUniversityId(student, universityId);
+                presenter.getAllStudentsByUniversityId(universityId);
             }
         });
     }

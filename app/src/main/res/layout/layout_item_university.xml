@@ -5,10 +5,20 @@
     android:layout_height="60dp"
     android:layout_margin="10dp">
 
-    <TextView
-        android:id="@+id/tv_name_university"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:textAppearance="@android:style/TextAppearance.Large" />
+        android:layout_height="match_parent">
+
+        <TextView
+            android:padding="5dp"
+            android:id="@+id/tv_name_university"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="left|center_vertical"
+            android:textAppearance="@android:style/TextAppearance.Large"
+            android:layout_centerVertical="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+    </RelativeLayout>
 </android.support.v7.widget.CardView>

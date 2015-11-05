@@ -112,10 +112,9 @@ public class UniversityActivity extends BaseActivity implements View.OnClickList
 
     private void showAddUniversityDialog() {
         new MaterialDialog.Builder(this)
-                .title(R.string.add_a_university)
-                .content(R.string.input_name_of_university)
+                .title(R.string.add_university)
                 .inputType(InputType.TYPE_CLASS_TEXT)
-                .input(R.string.name, R.string.pre_fill, new MaterialDialog.InputCallback() {
+                .input(R.string.hint_name, R.string.pre_fill, new MaterialDialog.InputCallback() {
                     @Override
                     public void onInput(MaterialDialog dialog, CharSequence input) {
                         presenter.addUniversity(input.toString());
