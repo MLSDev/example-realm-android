@@ -6,6 +6,7 @@ import android.support.v4.app.DialogFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 
@@ -37,6 +38,8 @@ public class AddUniversityDialog extends DialogFragment implements View.OnClickL
 
     private void initComponents(View view) {
         etUniversityName = (EditText) view.findViewById(R.id.et_university_name);
+        etUniversityName.requestFocus();
+        getDialog().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
         btAddUniversity = (Button) view.findViewById(R.id.bt_add_university);
         btAddUniversity.setOnClickListener(this);
     }

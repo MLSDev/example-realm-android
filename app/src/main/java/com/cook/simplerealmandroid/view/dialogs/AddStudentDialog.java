@@ -1,10 +1,13 @@
 package com.cook.simplerealmandroid.view.dialogs;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 
@@ -45,6 +48,9 @@ public class AddStudentDialog extends DialogFragment implements View.OnClickList
         etEmail = (EditText) view.findViewById(R.id.et_email);
         etBirthday = (EditText) view.findViewById(R.id.et_birthday);
         btAdd = (Button) view.findViewById(R.id.bt_add);
+        etName.requestFocus();
+        getDialog().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
+
         btAdd.setOnClickListener(this);
         etBirthday.setOnClickListener(this);
 
