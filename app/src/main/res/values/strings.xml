@@ -13,8 +13,8 @@
 
     <!-- students-->
     <string name="add_student">Add Student</string>
-    <string name="birthday">Birthday :</string>
-    <string name="email">Email :</string>
+    <string name="birthday">Birthday : </string>
+    <string name="email">Email : </string>
 
 
     <string name="hint_name">Name</string>

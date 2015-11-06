@@ -33,9 +33,9 @@ public class StudentsAdapter extends RecyclerView.Adapter<StudentsAdapter.Studen
     @Override
     public void onBindViewHolder(StudentViewHolder holder, int position) {
         holder.tvName.setText(students.get(position).getName());
-        String birthday = SimpleRealmApp.getInstance().getString(R.string.birthday) + DateFormatter.convertDateToString(students.get(position).getBirthday());
+        String birthday = SimpleRealmApp.getInstance().getString(R.string.birthday) + " " + DateFormatter.convertDateToString(students.get(position).getBirthday());
         holder.tvBirthday.setText(birthday);
-        String email = SimpleRealmApp.getInstance().getString(R.string.email) + students.get(position).getEmail();
+        String email = SimpleRealmApp.getInstance().getString(R.string.email) + " " + students.get(position).getEmail();
         holder.tvEmail.setText(email);
     }
 

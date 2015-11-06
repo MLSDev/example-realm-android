@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="white">#FFF</color>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
-    <color name="colorTextPrimary">#303F9F</color>
+    <color name="colorPrimary">#00BCD4</color>
+    <color name="colorPrimaryDark">#0097A7</color>
+    <color name="colorAccent">#FFEB3B</color>
+    <color name="colorTextPrimary">#212121</color>
+
+    <color name="mdtp_accent_color">#FFEB3B</color>
+    <color name="mdtp_accent_color_dark">#8f852c</color>
 </resources>
