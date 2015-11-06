@@ -1,9 +1,12 @@
 package com.cook.simplerealmandroid.presenters.impl;
 
 import com.cook.simplerealmandroid.model.Student;
+import com.cook.simplerealmandroid.model.University;
 import com.cook.simplerealmandroid.presenters.IStudentPresenter;
 import com.cook.simplerealmandroid.realm.repository.IStudentRepository;
+import com.cook.simplerealmandroid.realm.repository.IUniversityRepository;
 import com.cook.simplerealmandroid.realm.repository.impl.StudentRepository;
+import com.cook.simplerealmandroid.realm.repository.impl.UniversityRepository;
 import com.cook.simplerealmandroid.view.activity.StudentsActivity;
 
 import io.realm.RealmList;
@@ -21,13 +24,16 @@ public class StudentPresenter implements IStudentPresenter {
     private IStudentRepository.OnGetAllStudentsCallback onGetAllStudentsCallback;
     private IStudentRepository.OnGetStudentByIdCallback onGetStudentByIdCallback;
     private IStudentRepository.OnGetStudentsCallback onGetStudentsCallback;
+    private IUniversityRepository.OnGetUniversityByIdCallback onGetUniversityByIdCallback;
 
 
     private IStudentRepository studentRepository;
+    private IUniversityRepository universityRepository;
 
     public StudentPresenter(StudentsActivity view) {
         this.view = view;
         studentRepository = new StudentRepository();
+        universityRepository = new UniversityRepository();
     }
 
     @Override
@@ -63,6 +69,11 @@ public class StudentPresenter implements IStudentPresenter {
     @Override
     public void getStudentById(String id) {
         studentRepository.getStudentById(id, onGetStudentByIdCallback);
+    }
+
+    @Override
+    public void getUniversityById(String id) {
+        universityRepository.getUniversityById(id, onGetUniversityByIdCallback);
     }
 
     @Override
@@ -122,7 +133,17 @@ public class StudentPresenter implements IStudentPresenter {
                 view.showMessage(message);
             }
         };
+        onGetUniversityByIdCallback = new IUniversityRepository.OnGetUniversityByIdCallback() {
+            @Override
+            public void onSuccess(University university) {
+                view.updateToolbarTittle(university.getName());
+            }
 
+            @Override
+            public void onError(String message) {
+                view.showMessage(message);
+            }
+        };
     }
 
     @Override

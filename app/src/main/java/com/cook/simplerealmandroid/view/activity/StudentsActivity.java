@@ -10,6 +10,7 @@ import android.view.View;
 
 import com.cook.simplerealmandroid.R;
 import com.cook.simplerealmandroid.model.Student;
+import com.cook.simplerealmandroid.model.University;
 import com.cook.simplerealmandroid.presenters.IStudentPresenter;
 import com.cook.simplerealmandroid.presenters.impl.StudentPresenter;
 import com.cook.simplerealmandroid.realm.table.RealmTable;
@@ -39,6 +40,7 @@ public class StudentsActivity extends BaseActivity implements View.OnClickListen
         setContentView(R.layout.activity_students);
         presenter = new StudentPresenter(this);
         universityId = getIntent().getStringExtra(RealmTable.ID);
+
         initComponents();
     }
 
@@ -46,14 +48,18 @@ public class StudentsActivity extends BaseActivity implements View.OnClickListen
     protected void initComponents() {
         fbAdd = (FloatingActionButton) findViewById(R.id.fab_add_student);
         fbAdd.setOnClickListener(this);
-        getSupportActionBar().setTitle(getString(R.string.students));
         initRecyclerListener();
+    }
+
+    public void updateToolbarTittle(String tittle) {
+        getSupportActionBar().setTitle(getString(R.string.students) + " - " + tittle);
     }
 
     @Override
     protected void onStart() {
         super.onStart();
         presenter.subscribeCallbacks();
+        presenter.getUniversityById(universityId);
         presenter.getAllStudentsByUniversityId(universityId);
     }
 
@@ -112,6 +118,5 @@ public class StudentsActivity extends BaseActivity implements View.OnClickListen
         this.students = students;
         adapter = new StudentsAdapter(students);
         rvStudents.setAdapter(adapter);
-
     }
 }

@@ -62,8 +62,8 @@ public class UniversityPresenter implements IUniversityPresenter {
             }
 
             @Override
-            public void onError() {
-                view.showMessage("Error");
+            public void onError(String message) {
+                view.showMessage(message);
             }
         };
         addUniversityCallback = new IUniversityRepository.OnAddUniversityCallback() {
@@ -73,8 +73,8 @@ public class UniversityPresenter implements IUniversityPresenter {
             }
 
             @Override
-            public void onError() {
-                view.showMessage("Error");
+            public void onError(String message) {
+                view.showMessage(message);
             }
         };
         getSpecialUniversityCallback = new IUniversityRepository.OnGetUniversityByIdCallback() {
@@ -84,14 +84,14 @@ public class UniversityPresenter implements IUniversityPresenter {
             }
 
             @Override
-            public void onError() {
-                view.showMessage("Error");
+            public void onError(String message) {
+                view.showMessage(message);
             }
         };
         deleteUniversityCallback = new IUniversityRepository.OnDeleteUniversityCallback() {
             @Override
             public void onSuccess() {
-
+                view.showMessage("Deleted");
             }
 
             @Override

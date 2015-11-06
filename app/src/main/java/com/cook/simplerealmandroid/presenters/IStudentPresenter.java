@@ -21,4 +21,6 @@ public interface IStudentPresenter extends IBasePresenter{
 
     void getStudentById(String id);
 
+    void getUniversityById(String id);
+
 }

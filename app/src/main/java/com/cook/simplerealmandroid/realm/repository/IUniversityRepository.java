@@ -11,17 +11,17 @@ public interface IUniversityRepository extends IBaseRepository {
 
     interface OnAddUniversityCallback {
         void onSuccess();
-        void onError();
+        void onError(String message);
     }
 
     interface OnGetAllUniversityCallback {
         void onSuccess(RealmResults<University> universities);
-        void onError();
+        void onError(String message);
     }
 
     interface OnGetUniversityByIdCallback {
         void onSuccess(University university);
-        void onError();
+        void onError(String message);
     }
 
     interface OnDeleteUniversityCallback {
