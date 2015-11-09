@@ -1,7 +1,9 @@
+#Realm Android Example
+
 ##Description
 [Realm][realm] is a mobile database. 
 
-This app shows how you can integrate Realm in your android application. 
+This app shows how you can integrate [Realm][realm] in your android application. 
 The main functionality of this app is adding and deleting univrsities and students.
 
 <img src="/app/src/main/assets/1.png">
@@ -34,9 +36,15 @@ Development Standards are maintained by MLSDev, Inc. We specialize in providing 
 
 Find out more [here][mlsdev] and don't hesitate to [contact us][contact]!
 
+## Contributors
+Roman Kukhar kukhar@mlsdev.com
+
+[Github] [github-kukharoma] 
+
 [mlsdev]: http://mlsdev.com
 [contact]: http://mlsdev.com/contact_us
 [realm]: https://realm.io/
 [android studio]: https://developer.android.com/intl/ru/sdk/index.html
 [java]: http://www.oracle.com/technetwork/java/javase/downloads/jre7-downloads-1880261.html
 [android sdk]: https://developer.android.com/intl/ru/sdk/index.html
+[github-kukharoma]: https://github.com/kukharroma
