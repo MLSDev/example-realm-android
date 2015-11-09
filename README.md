@@ -26,7 +26,7 @@ Run command
 	`gradlew :app:clean :app:assembleDebug`
 
 Install on device 
-  `gradlew :app:clean  :app:assembleDebug`
+  `gradlew :app:installDebug`
   
 ## Authors
 * [Roman Kukhar](mailto:kukhar@mlsdev.com) ([kukharoma][github-kukharoma]), MLSDev 
