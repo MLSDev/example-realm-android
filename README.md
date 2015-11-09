@@ -27,6 +27,9 @@ Run command
 
 Install on device 
   `gradlew :app:clean  :app:assembleDebug`
+  
+## Authors
+* [Roman Kukhar](mailto:kukhar@mlsdev.com) ([kukharoma][github-kukharoma]), MLSDev 
 
 ## About MLSDev
 
@@ -35,11 +38,6 @@ Install on device
 Development Standards are maintained by MLSDev, Inc. We specialize in providing all-in-one solution in mobile and web development. Our team follows Lean principles and works according to agile methodologies to deliver the best results reducing the budget for development and its timeline. 
 
 Find out more [here][mlsdev] and don't hesitate to [contact us][contact]!
-
-## Contributors
-Roman Kukhar kukhar@mlsdev.com
-
-[Github] [github-kukharoma] 
 
 [mlsdev]: http://mlsdev.com
 [contact]: http://mlsdev.com/contact_us
