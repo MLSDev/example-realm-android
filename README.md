@@ -4,7 +4,7 @@
 [Realm][realm] is a mobile database. 
 
 This app shows how you can integrate [Realm][realm] in your android application. 
-The main functionality of this app is adding and deleting univrsities and students.
+The main functionality of this app is adding and deleting universities and students.
 
 <img src="/app/src/main/assets/1.png">
 <img src="/app/src/main/assets/2.png">
