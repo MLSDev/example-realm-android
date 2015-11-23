@@ -35,7 +35,7 @@ Install on device
 
 [<img src="/app/src/main/assets/mlsdev-logo.png" alt="MLSDev.com">][mlsdev]
 
-Development Standards are maintained by MLSDev, Inc. We specialize in providing all-in-one solution in mobile and web development. Our team follows Lean principles and works according to agile methodologies to deliver the best results reducing the budget for development and its timeline. 
+Realm Android Example are maintained by MLSDev, Inc. We specialize in providing all-in-one solution in mobile and web development. Our team follows Lean principles and works according to agile methodologies to deliver the best results reducing the budget for development and its timeline. 
 
 Find out more [here][mlsdev] and don't hesitate to [contact us][contact]!
 
