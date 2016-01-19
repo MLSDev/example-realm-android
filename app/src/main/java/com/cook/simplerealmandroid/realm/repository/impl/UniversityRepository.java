@@ -58,9 +58,7 @@ public class UniversityRepository implements IUniversityRepository {
     @Override
     public void getUniversityById(String id, OnGetUniversityByIdCallback callback) {
         Realm realm = Realm.getInstance(SimpleRealmApp.getInstance());
-        realm.beginTransaction();
         University result = realm.where(University.class).equalTo(RealmTable.ID, id).findFirst();
-        realm.commitTransaction();
 
         if (callback != null)
             callback.onSuccess(result);
@@ -69,10 +67,8 @@ public class UniversityRepository implements IUniversityRepository {
     @Override
     public void getAllUniversities(OnGetAllUniversityCallback callback) {
         Realm realm = Realm.getInstance(SimpleRealmApp.getInstance());
-        realm.beginTransaction();
         RealmQuery<University> query = realm.where(University.class);
         RealmResults<University> results = query.findAll();
-        realm.commitTransaction();
 
         if (callback != null)
             callback.onSuccess(results);

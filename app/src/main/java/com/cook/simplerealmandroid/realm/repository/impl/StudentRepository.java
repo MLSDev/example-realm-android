@@ -82,9 +82,7 @@ public class StudentRepository implements IStudentRepository {
     @Override
     public void getAllStudents(OnGetAllStudentsCallback callback) {
         Realm realm = Realm.getInstance(SimpleRealmApp.getInstance());
-        realm.beginTransaction();
         RealmResults<Student> results = realm.where(Student.class).findAll();
-        realm.commitTransaction();
 
         if (callback != null)
             callback.onSuccess(results);
@@ -93,9 +91,7 @@ public class StudentRepository implements IStudentRepository {
     @Override
     public void getAllStudentsByUniversityId(String id, OnGetStudentsCallback callback) {
         Realm realm = Realm.getInstance(SimpleRealmApp.getInstance());
-        realm.beginTransaction();
         University university = realm.where(University.class).equalTo(RealmTable.ID, id).findFirst();
-        realm.commitTransaction();
         RealmList<Student> students = university.getStudents();
 
         if (callback != null)
@@ -106,9 +102,7 @@ public class StudentRepository implements IStudentRepository {
     @Override
     public void getStudentById(String id, OnGetStudentByIdCallback callback) {
         Realm realm = Realm.getInstance(SimpleRealmApp.getInstance());
-        realm.beginTransaction();
         Student student = realm.where(Student.class).equalTo(RealmTable.ID, id).findFirst();
-        realm.commitTransaction();
 
         if (callback != null)
             callback.onSuccess(student);
