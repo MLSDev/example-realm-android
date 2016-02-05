@@ -30,7 +30,7 @@ dependencies {
     // Support Design
     compile 'com.android.support:design:23.1.0'
     // Realm
-    compile 'io.realm:realm-android:0.83.0+'
+    compile 'io.realm:realm-android:0.83.0'
 
     // material datePicker
     compile 'com.wdullaer:materialdatetimepicker:1.3.1'
